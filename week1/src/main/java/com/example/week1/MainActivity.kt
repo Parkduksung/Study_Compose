@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,9 +23,7 @@ class MainActivity : ComponentActivity() {
         // 마지막으로 setContentView 에 ViewGroup 인 ComposeView 가 추가되고 어떠한 layoutParam 특성을 주지 않았기 때문에 DefaultActivityContentLayoutParams(wrap,wrap 이라 보면 된다.) 가 추가된다.
         // 결론적으로 아래 3줄의 코드를 실행했을때의 결과는 맨 위에 왼쪽에 Hello world 가 나오게 된다.
         setContent {
-            MessageCardByDuk {
-                Text(text = "Hello")
-            }
+            PreviewMessageCard()
         }
     }
 }
@@ -39,4 +38,14 @@ fun MessageCard(name: String) {
 @Composable
 fun MessageCardByDuk(text: @Composable () -> Unit){
     text.invoke()
+}
+
+// 미리보기.
+// 삼성이나 엘지 등 픽셀이나 넥서스를 제외하고는 default 로 보여지나 보군..
+// Device 와 UiMode 라는 어노테이션 클래스가 필드변수로 되어있군.
+// 안에 파라메터에 대한 설명을 참조하고 사용해야 할듯. 단지 렌더링 해주는 것으로 보여진다.
+@Preview
+@Composable
+fun PreviewMessageCard(){
+    Text(text = "Hello")
 }
