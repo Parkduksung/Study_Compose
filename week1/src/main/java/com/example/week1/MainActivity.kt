@@ -3,8 +3,12 @@ package com.example.week1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +27,16 @@ class MainActivity : ComponentActivity() {
         // 마지막으로 setContentView 에 ViewGroup 인 ComposeView 가 추가되고 어떠한 layoutParam 특성을 주지 않았기 때문에 DefaultActivityContentLayoutParams(wrap,wrap 이라 보면 된다.) 가 추가된다.
         // 결론적으로 아래 3줄의 코드를 실행했을때의 결과는 맨 위에 왼쪽에 Hello world 가 나오게 된다.
         setContent {
-            PreviewMessageCard()
+            Row {
+                Image(
+                    painter = painterResource(id = android.R.drawable.ic_delete),
+                    contentDescription = "추가.",
+                )
+                Column {
+                    Text(text = "a")
+                    Text(text = "b")
+                }
+            }
         }
     }
 }
@@ -36,7 +49,7 @@ fun MessageCard(name: String) {
 
 // 이렇게 하는 사람이 있을까..
 @Composable
-fun MessageCardByDuk(text: @Composable () -> Unit){
+fun MessageCardByDuk(text: @Composable () -> Unit) {
     text.invoke()
 }
 
@@ -46,6 +59,6 @@ fun MessageCardByDuk(text: @Composable () -> Unit){
 // 안에 파라메터에 대한 설명을 참조하고 사용해야 할듯. 단지 렌더링 해주는 것으로 보여진다.
 @Preview
 @Composable
-fun PreviewMessageCard(){
+fun PreviewMessageCard() {
     Text(text = "Hello")
 }
