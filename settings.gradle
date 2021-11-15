@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "StudyCompose"
 include ':app'
+include ':week1'
