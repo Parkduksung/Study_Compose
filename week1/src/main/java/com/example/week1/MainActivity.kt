@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,21 +33,35 @@ class MainActivity : ComponentActivity() {
         // 마지막으로 setContentView 에 ViewGroup 인 ComposeView 가 추가되고 어떠한 layoutParam 특성을 주지 않았기 때문에 DefaultActivityContentLayoutParams(wrap,wrap 이라 보면 된다.) 가 추가된다.
         // 결론적으로 아래 3줄의 코드를 실행했을때의 결과는 맨 위에 왼쪽에 Hello world 가 나오게 된다.
         setContent {
-            Row(modifier = Modifier.padding(all = 8.dp)) {
-                Image(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape),
-                    painter = painterResource(id = android.R.drawable.ic_delete),
-                    contentDescription = "추가.",
-                )
-                Spacer(modifier = Modifier.width(8.dp))
+            MaterialTheme {
+                Row(modifier = Modifier.padding(all = 8.dp)) {
+                    Image(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .border(1.5.dp, MaterialTheme.colors.secondary, CircleShape),
+                        painter = painterResource(id = android.R.drawable.ic_delete),
+                        contentDescription = "추가.",
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
 
 
-                Column {
-                    Text(text = "a")
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(text = "b")
+                    Column {
+                        Text(
+                            text = "a",
+                            color = MaterialTheme.colors.secondaryVariant,
+                            style = MaterialTheme.typography.subtitle2
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Surface(shape = MaterialTheme.shapes.small, elevation = 1.dp) {
+                            Text(
+                                text = "b",
+                                modifier = Modifier.padding(all = 4.dp),
+                                style = MaterialTheme.typography.body2
+                            )
+                        }
+                    }
                 }
             }
         }
