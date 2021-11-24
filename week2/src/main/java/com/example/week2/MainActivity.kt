@@ -14,6 +14,8 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,23 +27,26 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             StudyComposeTheme {
-                MyApp(this)
+                MyApp()
             }
         }
     }
 }
 
 @Composable
-fun MyApp(context: Context, names: List<String> = listOf("world", "Compose")) {
+fun MyApp(names: List<String> = listOf("world", "Compose")) {
     Column {
         for (name in names) {
-            Greeting(context, name = name)
+            Greeting(name = name)
         }
     }
 }
 
 @Composable
-private fun Greeting(context: Context, name: String) {
+private fun Greeting(name: String) {
+
+    val expanded = remember { mutableStateOf(false) }
+
     Surface(
         color = MaterialTheme.colors.primary,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
@@ -52,9 +57,9 @@ private fun Greeting(context: Context, name: String) {
                 Text(text = name)
             }
             OutlinedButton(onClick = {
-                Toast.makeText(context, "눌림 $name", Toast.LENGTH_SHORT).show()
+                expanded.value = !expanded.value
             }) {
-                Text(text = "Show more")
+                Text(text = if (expanded.value) "Show less" else "Show more")
             }
         }
     }
