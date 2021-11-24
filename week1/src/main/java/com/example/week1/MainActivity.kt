@@ -66,6 +66,21 @@ fun PreviewMessageCard() {
     Text(text = "Hello")
 }
 
+
+
+@Preview
+@Composable
+fun test1(){
+    MaterialTheme {
+        Row {
+            Text(text = "name")
+            Text(text = "name")
+            Text(text = "name")
+            Text(text = "name")
+        }
+    }
+}
+
 @Preview
 @Composable
 fun test() {
