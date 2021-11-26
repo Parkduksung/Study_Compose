@@ -1,6 +1,8 @@
 package com.example.week3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -20,8 +22,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.week3.ui.theme.StudyComposeTheme
@@ -32,7 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             StudyComposeTheme {
-                ScrollingList()
+                BodyContent()
             }
         }
     }
@@ -124,9 +128,11 @@ fun LayoutsCodelab() {
 
 @Composable
 fun BodyContent(modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
-        Text(text = "Hi there!")
-        Text(text = "Thanks for going through the Layouts codelab")
+    MyOwnColumn(modifier = modifier.padding(8.dp)) {
+        Text("MyOwnColumn")
+        Text("places items")
+        Text("vertically.")
+        Text("We've done it by hand!")
     }
 }
 
@@ -232,3 +238,61 @@ fun ScrollingList() {
     }
 }
 
+
+@SuppressLint("LongLogTag")
+fun Modifier.firstBaselineToTop(
+    firstBaselineTop: Dp
+) = this.then(
+    layout { measurable, constraints ->
+
+        val placeable = measurable.measure(constraints)
+
+        check(placeable[FirstBaseline] != AlignmentLine.Unspecified)
+
+        val firstBaseline = placeable[FirstBaseline]
+
+
+        val placeableY = firstBaselineTop.roundToPx() - firstBaseline
+
+        val height = placeable.height + placeableY
+
+        Log.d("결과-firstBaseline", firstBaseline.toString())
+        Log.d("결과-placeable", placeable.height.toString())
+        Log.d("결과-firstBaselineTop.roundToPx", firstBaselineTop.roundToPx().toString())
+        Log.d("결과-placeableY", placeableY.toString())
+        Log.d("결과-height", height.toString())
+
+        layout(
+            placeable.width, height
+        ) {
+            placeable.placeRelative(0, placeableY)
+        }
+    }
+)
+
+@Composable
+fun MyOwnColumn(
+    modifier: Modifier = Modifier,
+    // 커스텀 layout 속성
+    content: @Composable () -> Unit
+) {
+    Layout(
+        modifier = modifier,
+        content = content
+    ) { measurables, constraints ->
+
+        val placeables = measurables.map { measurable ->
+            measurable.measure(constraints)
+        }
+
+        var yPosition = 0
+
+        layout(constraints.maxWidth, constraints.maxHeight) {
+            placeables.forEach { placeable ->
+                placeable.placeRelative(x = 0, y = yPosition)
+                yPosition += placeable.height
+            }
+        }
+
+    }
+}
