@@ -296,3 +296,59 @@ fun MyOwnColumn(
 
     }
 }
+
+
+@Composable
+fun StaggeredGrid(
+    modifier: Modifier = Modifier,
+    rows: Int = 3,
+    content: @Composable () -> Unit
+) {
+
+    Layout(content = content, modifier = modifier) { measurables, constraints ->
+
+        val rowWidths = IntArray(rows) { 0 }
+        val rowHeights = IntArray(rows) { 0 }
+
+        val placeables = measurables.mapIndexed { index, measurable ->
+
+            val placeable = measurable.measure(constraints)
+
+            val row = index % rows
+
+            rowWidths[row] += placeable.width
+            rowHeights[row] = Math.max(rowHeights[row], placeable.height)
+
+            placeable
+        }
+
+        val width =
+            rowWidths.maxOrNull()?.coerceIn(constraints.minWidth.rangeTo(constraints.maxWidth))
+                ?: constraints.minWidth
+        val height =
+            rowHeights.maxOrNull()?.coerceIn(constraints.minHeight.rangeTo(constraints.maxHeight))
+                ?: constraints.minHeight
+
+        val rowY = IntArray(rows) { 0 }
+
+        for (i in 1 until rows) {
+            rowY[i] = rowY[i - 1] + rowHeights[i - 1]
+        }
+
+        layout(width, height) {
+
+            val rowX = IntArray(rows) { 0 }
+
+            placeables.forEachIndexed { index, placeable ->
+
+                val row = index % rows
+                placeable.placeRelative(
+                    x = rowX[row],
+                    y = rowY[row]
+                )
+
+                rowX[row] += placeable.width
+            }
+        }
+    }
+}
