@@ -64,4 +64,7 @@ dependencies {
 
     //더 많은 icon 들을 사용할수 있다. ex) TopAppBar
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
+    //image load lib
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }
