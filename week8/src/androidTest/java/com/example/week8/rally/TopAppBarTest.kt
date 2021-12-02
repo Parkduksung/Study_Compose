@@ -3,6 +3,7 @@ package com.example.week8.rally
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import com.example.week8.RallyApp
 import com.example.week8.RallyScreen
 import com.example.week8.ui.components.RallyTopAppBar
 import org.junit.Rule
@@ -72,5 +73,22 @@ class TopAppBarTest {
                 useUnmergedTree = true
             )
             .assertExists()
+    }
+
+    //찰스님 블로그 참고하였습니다.
+    @Test
+    fun rallyTopAppBarTest_clickTabs(){
+        var currentScreen:RallyScreen = RallyScreen.Overview
+
+        composeTestRule.setContent {
+            RallyApp(currentScreen){ screen-> currentScreen = screen }
+        }
+
+        RallyScreen.values().forEach { screen->
+            composeTestRule
+                .onNodeWithContentDescription(screen.name)
+                .performClick()
+            assert(currentScreen == screen)
+        }
     }
 }
