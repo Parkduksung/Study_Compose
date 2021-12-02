@@ -17,7 +17,7 @@ buildscript {
         junitVersion = '4.13.1'
         kotlinVersion = '1.5.31'
         ktlintVersion = '0.42.1'
-        ktxVersion = '1.6.0'
+        ktxVersion = '1.7.0'
         lifecycleVersion = '2.3.0'
         materialVersion = '1.4.0'
         roomVersion = '2.3.0'
