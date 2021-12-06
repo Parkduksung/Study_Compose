@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class GetCoinUseCase(
+class GetCoinUseCase @Inject constructor(
     private val coinRepository: CoinRepository
 ) {
     operator fun invoke(): Flow<Resource<List<Coin>>> = flow {
@@ -23,5 +24,4 @@ class GetCoinUseCase(
             emit(Resource.Error<List<Coin>>("Couldn't reach server. Check your internet connection."))
         }
     }
-
 }
