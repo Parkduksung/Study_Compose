@@ -1,6 +1,7 @@
 package com.example.practice1.data.remote.dto
 
 
+import com.example.practice1.domain.model.Coin
 import com.google.gson.annotations.SerializedName
 
 data class CoinDto(
@@ -14,3 +15,13 @@ data class CoinDto(
     val symbol: String,
     val type: String
 )
+
+fun CoinDto.toCoin(): Coin {
+    return Coin(
+        id = id,
+        isActive = isActive,
+        name = name,
+        rank = rank,
+        symbol = symbol
+    )
+}
