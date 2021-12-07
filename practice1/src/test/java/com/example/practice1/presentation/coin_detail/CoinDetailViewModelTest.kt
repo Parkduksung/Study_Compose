@@ -27,8 +27,8 @@ class CoinDetailViewModelTest {
     @Test
     fun getCoinLoadingTest() = runBlocking {
 
-        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         //given
+        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         whenever(
             getCoinsUseCase(
                 coinId = savedStateHandle.get<String>(Constants.PARAM_COIN_ID) ?: ""
@@ -53,8 +53,8 @@ class CoinDetailViewModelTest {
     @Test
     fun getCoinSuccessTest() = runBlocking {
 
-        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         //given
+        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         whenever(
             getCoinsUseCase(
                 coinId = savedStateHandle.get<String>(Constants.PARAM_COIN_ID) ?: ""
@@ -86,8 +86,8 @@ class CoinDetailViewModelTest {
     @Test
     fun getCoinFailTest() = runBlocking {
 
-        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         //given
+        whenever(savedStateHandle.get<String>(Constants.PARAM_COIN_ID)).thenReturn("1")
         whenever(
             getCoinsUseCase(
                 coinId = savedStateHandle.get<String>(Constants.PARAM_COIN_ID) ?: ""

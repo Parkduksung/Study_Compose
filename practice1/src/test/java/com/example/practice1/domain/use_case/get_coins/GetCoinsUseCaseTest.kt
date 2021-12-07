@@ -33,11 +33,15 @@ class GetCoinsUseCaseTest {
     @Test
     fun invokeSuccessTest() = runBlocking {
 
+        //given
         whenever(coinRepository.getCoinById(coinId = "1")).thenReturn(MockUtil.mockCoinDetailDto())
 
+        //when
         getCoinUseCase("1").take(getCoinUseCase("1").count()).toList().forEach { resource ->
 
             when (resource) {
+
+                //then
                 is Resource.Loading -> {
                     Assert.assertEquals(resource.message, null)
                     Assert.assertEquals(resource.data, null)
@@ -58,14 +62,19 @@ class GetCoinsUseCaseTest {
     @Test
     fun invokeFailTest() = runBlocking {
 
+        //given
         coinRepository.stub {
             onBlocking { getCoinById(coinId = "1") } doAnswer {
                 throw IOException("Couldn't reach server. Check your internet connection.")
             }
         }
 
+        //when
         getCoinUseCase(coinId = "1").take(getCoinUseCase(coinId = "1").count()).toList().forEach { resource ->
+
             when (resource) {
+
+                //then
                 is Resource.Loading -> {
                     Assert.assertEquals(resource.message, null)
                     Assert.assertEquals(resource.data, null)
