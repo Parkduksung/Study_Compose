@@ -16,17 +16,12 @@ import org.junit.Before
 import org.junit.Test
 import utils.MockUtil
 
+@ExperimentalCoroutinesApi
 class CoinListViewModelTest {
 
     private lateinit var coinListViewModel: CoinListViewModel
     private val getCoinUseCase: GetCoinUseCase = mock()
 
-
-    @ExperimentalCoroutinesApi
-    @Before
-    fun setUp() {
-        coinListViewModel = CoinListViewModel(getCoinUseCase)
-    }
 
     @InternalCoroutinesApi
     @Test
