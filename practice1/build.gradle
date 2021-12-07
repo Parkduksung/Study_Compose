@@ -17,7 +17,7 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.practice1.AppTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -83,6 +83,7 @@ dependencies {
 
     // compose insets
     implementation "com.google.accompanist:accompanist-insets:$versions.accompanistVersion"
+    implementation "com.google.accompanist:accompanist-flowlayout:$versions.flowlayoutVersion"
 
     // compose compatibles
     implementation "com.github.skydoves:orchestra-balloon:$versions.orchestraVersion"
@@ -92,6 +93,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$versions.roomVersion"
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+
 
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
