@@ -28,6 +28,7 @@ buildscript {
         viewPagerVersion = '1.0.0'
         workVersion = '2.5.0'
     }
+    apply from: './dependencies.gradle'
     repositories {
         google()
         mavenCentral()
