@@ -1,11 +1,12 @@
 package com.example.practice1.presentation.coin_list
 
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.practice1.data.remote.CoinPaprikaApi
-import com.example.practice1.di.AppModule
+import com.example.practice1.di.TestAppModule
 import com.example.practice1.domain.repository.CoinRepository
 import com.example.practice1.domain.use_case.get_coin.GetCoinUseCase
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -17,7 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
 
-@UninstallModules(AppModule::class)
+@UninstallModules(TestAppModule::class)
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class CoinListScreenKtTest {
@@ -49,14 +50,25 @@ class CoinListScreenKtTest {
     }
 
     @Test
-    fun initUi() {
+    fun progressTest() {
+
+        //given, when
         composeTestRule.setContent {
             navController = rememberNavController()
             CoinListScreen(navController = navController, coinListViewModel)
         }
 
+        //then - before api connection, show progress.
+        composeTestRule.onNodeWithTag("progress").assertExists()
+
+
+        //finish api connection. so state change.
         composeTestRule.waitUntil {
             coinListViewModel.state.value != CoinListState(isLoading = true)
         }
+
+        //then - after api connection, hide progress.
+        composeTestRule.onNodeWithTag("progress").assertDoesNotExist()
+
     }
 }
