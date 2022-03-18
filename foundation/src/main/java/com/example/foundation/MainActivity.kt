@@ -3,16 +3,22 @@ package com.example.foundation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -79,15 +85,57 @@ fun BoxExample() {
 
 @Composable
 fun ListScreen(
-    navController: NavController
+    navController: NavController,
+    nums: List<String> = List(1000) { "$it" }
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text("ListScreen.", modifier = Modifier
-            .align(Alignment.Center)
-            .clickable(onClick = {
-                navController.navigate(Screen.DetailScreen.route)
-            })
-        )
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(items = nums) { num ->
+                ListItem(num = num)
+            }
+        }
+    }
+}
+
+@Composable
+fun ListItem(
+    num: String
+) {
+
+    Card(
+        backgroundColor = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        CardContent(num = num)
+    }
+}
+
+@Composable
+fun CardContent(
+    num: String
+) {
+
+    Row(
+        modifier = Modifier
+            .padding(12.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(12.dp)
+        ) {
+            Text(text = "Hello,")
+            Text(
+                text = num,
+                style = (MaterialTheme.typography.h4).copy(fontWeight = FontWeight.ExtraBold)
+            )
+        }
     }
 }
 
