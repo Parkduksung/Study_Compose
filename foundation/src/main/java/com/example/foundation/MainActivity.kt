@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -91,7 +92,9 @@ fun ListScreen(
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(items = nums) { num ->
-                ListItem(num = num)
+                ListItem(num = num, onItemClick = {
+                    navController.navigate(Screen.DetailScreen.route)
+                })
             }
         }
     }
@@ -99,12 +102,18 @@ fun ListScreen(
 
 @Composable
 fun ListItem(
-    num: String
+    num: String,
+    onItemClick: (String) -> Unit
 ) {
-
     Card(
         backgroundColor = MaterialTheme.colors.primary,
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+        modifier = Modifier
+            .padding(vertical = 4.dp, horizontal = 8.dp)
+            .clickable(onClick = {
+                if (num.toInt() <= 10) {
+                    onItemClick(num)
+                }
+            })
     ) {
         CardContent(num = num)
     }
