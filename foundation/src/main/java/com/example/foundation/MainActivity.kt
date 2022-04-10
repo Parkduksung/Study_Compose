@@ -55,6 +55,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        runOnUiThread {  }
     }
 }
 
@@ -139,6 +141,7 @@ fun CardContent(
                 .weight(1f)
                 .padding(12.dp)
         ) {
+
             Text(text = "Hello,")
             Text(
                 text = num,
