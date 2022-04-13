@@ -1,5 +1,6 @@
 package com.example.practice2.data.remote.dto
 
+import com.example.practice2.domain.model.GithubUser
 import com.google.gson.annotations.SerializedName
 
 
@@ -29,4 +30,11 @@ data class UserItem(
     @SerializedName("subscriptions_url") var subscriptions_url: String? = null,
     @SerializedName("type") var type: String? = null,
     @SerializedName("url") var url: String? = null
-)
+) {
+    fun toGithubUser(): GithubUser =
+        GithubUser(
+            userId = login.orEmpty(),
+            image = avatar_url.orEmpty(),
+            repoUrl = repos_url.orEmpty(),
+        )
+}
