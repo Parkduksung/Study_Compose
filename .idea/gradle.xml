@@ -7,12 +7,13 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="liberica-11" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/foundation" />
+            <option value="$PROJECT_DIR$/part1" />
             <option value="$PROJECT_DIR$/practice1" />
             <option value="$PROJECT_DIR$/practice2" />
             <option value="$PROJECT_DIR$/week1" />
@@ -25,7 +26,6 @@
             <option value="$PROJECT_DIR$/week8" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
