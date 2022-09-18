@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 
 class ListAndAniActivity : ComponentActivity() {
 
@@ -32,6 +33,20 @@ class ListAndAniActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewConversation(){
+    val arrayPerson = arrayOf("박", "덕", "성")
+    val arrayContent = arrayOf("안녕하세요", "반갑습니다", "환영합니다")
+
+    val personList = mutableListOf<ListAndAniActivity.Person>().apply {
+        for (i in 20..40) {
+            add(ListAndAniActivity.Person(i, arrayPerson[i % 3], arrayContent[i % 3]))
+        }
+    }
+    Conversation(personList)
 }
 
 
