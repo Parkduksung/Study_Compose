@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.practice1.domain.model.Coin
 
@@ -43,5 +44,14 @@ fun CoinListItem(
             style = MaterialTheme.typography.body2,
             modifier = Modifier.align(CenterVertically)
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCoinListItem(){
+    val mockCoin = Coin("",true,"a",1,"asdf")
+    CoinListItem(mockCoin){
+
     }
 }
