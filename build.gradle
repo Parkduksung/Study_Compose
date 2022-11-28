@@ -45,6 +45,8 @@ buildscript {
 
 plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.10'
+    id 'com.android.application' version '7.0.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
 }
 
 task clean(type: Delete) {
