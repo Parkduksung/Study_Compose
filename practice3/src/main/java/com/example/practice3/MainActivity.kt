@@ -122,6 +122,8 @@ class MainActivity : ComponentActivity() {
             val json = Json {
                 ignoreUnknownKeys = true
                 prettyPrint = true
+            }.apply {
+                asConverterFactory(MediaType.parse("application/json")!!))
             }
 
             val retrofit = Retrofit.Builder().baseUrl("https://api.odcloud.kr/")
@@ -234,7 +236,6 @@ data class LOLChamp(
 
 
 interface LOLService {
-
     @GET("cdn/11.16.1/data/en_US/champion.json")
     fun getLOLResponse(): Call<LOLResponse<LOLChamp>>
 }

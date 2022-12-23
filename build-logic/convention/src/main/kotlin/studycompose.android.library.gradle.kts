@@ -1,4 +1,4 @@
-import com.example.clonenowinandroid.configureKotlinAndroid
+import com.example.studycompose.configureKotlinAndroid
 
 plugins{
     id("com.android.library")
