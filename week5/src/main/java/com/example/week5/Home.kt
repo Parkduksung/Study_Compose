@@ -23,7 +23,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Palette
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -75,7 +75,7 @@ private fun AppBar() {
     TopAppBar(
         navigationIcon = {
             Icon(
-                imageVector = Icons.Rounded.Palette,
+                imageVector = Icons.Rounded.Home,
                 contentDescription = null,
                 modifier = Modifier.padding(horizontal = 12.dp)
             )
