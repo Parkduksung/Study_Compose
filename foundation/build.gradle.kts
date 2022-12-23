@@ -5,7 +5,7 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "com.example.book1"
+        applicationId = "com.example.foundation"
         versionCode = 1
         versionName = "1.0"
 
@@ -34,6 +34,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -52,4 +53,6 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.testManifest)
+
+    implementation(libs.androidx.navigation.compose)
 }
