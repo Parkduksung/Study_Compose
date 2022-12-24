@@ -123,7 +123,7 @@ class MainActivity : ComponentActivity() {
                 ignoreUnknownKeys = true
                 prettyPrint = true
             }.apply {
-                asConverterFactory(MediaType.parse("application/json")!!))
+                asConverterFactory(MediaType.parse("application/json")!!)
             }
 
             val retrofit = Retrofit.Builder().baseUrl("https://api.odcloud.kr/")
