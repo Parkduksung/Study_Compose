@@ -2,6 +2,7 @@ package com.example.swipedismiss
 
 import android.R
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -10,10 +11,8 @@ import androidx.compose.ui.Alignment.Companion.CenterStart
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
@@ -27,11 +26,12 @@ fun SwipeToDismissStart(
             0.25f
         )
     },
-    dismissContent: @Composable RowScope.() -> Unit
+    dismissContent: @Composable RowScope.() -> Unit,
+    dismissStateReset: () -> Unit
 ) = BoxWithConstraints(modifier) {
 
 
-    val width = constraints.maxWidth.toFloat() * 0.3f
+    val width = constraints.maxWidth.toFloat() * 0.5f
 
     val anchors = mutableMapOf(0f to DismissValue.Default)
     anchors += width to DismissValue.DismissedToEnd
@@ -65,14 +65,34 @@ fun SwipeToDismissStart(
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(width.dp)
                     .background(Color.Green.copy(alpha = 0.4f))
                     .padding(horizontal = 30.dp),
             ) {
                 Icon(
                     modifier = Modifier
                         .scale(1.5f)
-                        .align(CenterStart),
+                        .align(CenterStart)
+                        .clickable {
+                            dismissStateReset()
+                        },
+                    painter = painterResource(R.drawable.ic_dialog_info),
+                    contentDescription = null
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .background(Color.Green.copy(alpha = 0.4f))
+                    .padding(horizontal = 30.dp),
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .scale(1.5f)
+                        .align(CenterStart)
+                        .clickable {
+                            dismissStateReset()
+                        },
                     painter = painterResource(R.drawable.ic_dialog_info),
                     contentDescription = null
                 )

@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.swipedismiss.ui.theme.StudyComposeTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -34,9 +35,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(styleUrlList) {
-                            StyledCard(modifier = Modifier.padding(16.dp), styledUrl = it) {
-
-                            }
+                            StyledCard(modifier = Modifier.padding(16.dp), styledUrl = it)
                         }
                     }
                 }
@@ -56,13 +55,17 @@ data class StyledUrl(
     val url: String
 )
 
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun StyledCard(
     modifier: Modifier,
     styledUrl: StyledUrl,
-    onDismissedToDelete: (styledUrl: StyledUrl) -> Unit,
 ) {
+
+    //reset
+    val scope = rememberCoroutineScope()
+
     val context = LocalContext.current
     val shape = RoundedCornerShape(30.dp)
     val backgroundColor = Color(240, 240, 240)
@@ -94,8 +97,11 @@ fun StyledCard(
                 shape = shape
             )
         }
-    )
-
+    ) {
+        scope.launch {
+            dismissState.reset()
+        }
+    }
 }
 
 
