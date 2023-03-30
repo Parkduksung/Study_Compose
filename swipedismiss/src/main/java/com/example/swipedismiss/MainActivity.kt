@@ -67,8 +67,7 @@ fun StyledCard(
     val scope = rememberCoroutineScope()
 
     val context = LocalContext.current
-    val shape = RoundedCornerShape(30.dp)
-    val backgroundColor = Color(240, 240, 240)
+
     val dismissState = rememberDismissState(confirmStateChange = { dismissValue ->
         when (dismissValue) {
             DismissValue.Default -> { // dismissThresholds 만족 안한 상태
@@ -88,13 +87,12 @@ fun StyledCard(
         dismissThresholds = { FractionalThreshold(0.10f) },
         modifier = modifier
             .fillMaxWidth()
-            .height(100.dp)
-            .clip(shape),
+            .height(100.dp),
         dismissContent = { // content
             CarrotUrlCard(
                 styledUrl = styledUrl,
-                backgroundColor = backgroundColor,
-                shape = shape
+                backgroundColor = Color.Transparent,
+                shape = RoundedCornerShape(8.dp)
             )
         }
     ) {
@@ -107,13 +105,18 @@ fun StyledCard(
 
 @Composable
 fun CarrotUrlCard(styledUrl: StyledUrl, backgroundColor: Color, shape: RoundedCornerShape) {
-    Box(
+    Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
-            .background(backgroundColor, shape)
+            .height(100.dp),
+        elevation = 0.dp
     ) {
-        Text(text = styledUrl.url)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Text(text = styledUrl.url)
+        }
     }
 }
 

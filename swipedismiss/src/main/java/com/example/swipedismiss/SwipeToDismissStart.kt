@@ -22,16 +22,14 @@ fun SwipeToDismissStart(
     state: DismissState,
     modifier: Modifier = Modifier,
     dismissThresholds: (DismissDirection) -> ThresholdConfig = {
-        FractionalThreshold(
-            0.25f
-        )
+        FractionalThreshold(0.25f)
     },
     dismissContent: @Composable RowScope.() -> Unit,
     dismissStateReset: () -> Unit
 ) = BoxWithConstraints(modifier) {
 
 
-    val width = constraints.maxWidth.toFloat() * 0.5f
+    val width = constraints.maxWidth.toFloat() * 0.3f
 
     val anchors = mutableMapOf(0f to DismissValue.Default)
     anchors += width to DismissValue.DismissedToEnd
@@ -40,7 +38,6 @@ fun SwipeToDismissStart(
         { from: DismissValue, to: DismissValue ->
             dismissThresholds(DismissDirection.StartToEnd)
         }
-
 
 
     Box(
@@ -65,25 +62,7 @@ fun SwipeToDismissStart(
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .background(Color.Green.copy(alpha = 0.4f))
-                    .padding(horizontal = 30.dp),
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .scale(1.5f)
-                        .align(CenterStart)
-                        .clickable {
-                            dismissStateReset()
-                        },
-                    painter = painterResource(R.drawable.ic_dialog_info),
-                    contentDescription = null
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .background(Color.Green.copy(alpha = 0.4f))
+                    .background(Color.Transparent)
                     .padding(horizontal = 30.dp),
             ) {
                 Icon(
