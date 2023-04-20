@@ -49,8 +49,8 @@ spotless = "6.3.0"
 turbine = "0.7.0"
 swipeRefresh = "0.27.0"
 landscapeCoil = "1.4.3"
-accompanistPager = "0.20.1"
-accompanistPagerIndicator = "0.20.1"
+accompanistPager = "0.30.1"
+accompanistPagerIndicator = "0.30.1"
 
 [libraries]
 accompanist-flowlayout = { group = "com.google.accompanist", name = "accompanist-flowlayout", version.ref = "accompanist" }
