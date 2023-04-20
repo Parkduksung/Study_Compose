@@ -3,30 +3,36 @@ package com.example.viewpager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import com.example.viewpager.tab.TabA
+import com.example.viewpager.tab.TabB
+import com.example.viewpager.tab.TabC
 import com.example.viewpager.ui.theme.StudyComposeTheme
-import com.google.accompanist.pager.*
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.pagerTabIndicatorOffset
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +52,13 @@ class MainActivity : ComponentActivity() {
 
 val greenColor = Color(0xFF0F9D58)
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalUnitApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TabLayout() {
 
-    val pagerState = rememberPagerState(3)
+
+    val pagerState = rememberPagerState(0)
+
 
     Column(
         // for column we are specifying modifier on below line.
@@ -99,23 +107,23 @@ fun TabLayout() {
 
 // on below line we are
 // creating a function for tabs
-@ExperimentalPagerApi
+@OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
 @Composable
-fun Tabs(pagerState: PagerState) {
+fun Tabs(pagerState: androidx.compose.foundation.pager.PagerState) {
     // in this function we are creating a list
     // in this list we are specifying data as
     // name of the tab and the icon for it.
     val list = listOf(
         "Home" to Icons.Default.Home,
         "Shopping" to Icons.Default.ShoppingCart,
-        "Settings" to Icons.Default.Settings
+        "Settings" to Icons.Default.Settings,
     )
     // on below line we are creating
     // a variable for the scope.
     val scope = rememberCoroutineScope()
     // on below line we are creating a
     // individual row for our tab layout.
-    TabRow(
+    ScrollableTabRow(
         // on below line we are specifying
         // the selected index.
         selectedTabIndex = pagerState.currentPage,
@@ -126,6 +134,9 @@ fun Tabs(pagerState: PagerState) {
 
         // on below line we are specifying content color.
         contentColor = Color.White,
+
+
+        edgePadding = 0.dp,
 
         // on below line we are specifying
         // the indicator for the tab
@@ -180,57 +191,28 @@ fun Tabs(pagerState: PagerState) {
 
 // on below line we are creating a tab content method
 // in which we will be displaying the individual page of our tab .
-@ExperimentalPagerApi
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TabsContent(pagerState: PagerState) {
+fun TabsContent(pagerState: androidx.compose.foundation.pager.PagerState) {
     // on below line we are creating
     // horizontal pager for our tab layout.
-    HorizontalPager(count = 3, state = pagerState) {
-        // on below line we are specifying
-        // the different pages.
-            page ->
-        when (page) {
+
+    androidx.compose.foundation.pager.HorizontalPager(
+        pageCount = 3,
+        state = pagerState,
+        beyondBoundsPageCount = 3
+    ) { page ->
+        when (page % 3) {
             // on below line we are calling tab content screen
             // and specifying data as Home Screen.
-            0 -> TabContentScreen(data = "Welcome to Home Screen")
+            0 -> TabA(data = "Welcome to Home Screen")
             // on below line we are calling tab content screen
             // and specifying data as Shopping Screen.
-            1 -> TabContentScreen(data = "Welcome to Shopping Screen")
+            1 -> TabB(data = "Welcome to Shopping Screen")
             // on below line we are calling tab content screen
             // and specifying data as Settings Screen.
-            2 -> TabContentScreen(data = "Welcome to Settings Screen")
+            2 -> TabC(data = "Welcome to Settings Screen")
         }
-    }
-}
-
-// on below line we are creating a Tab Content
-// Screen for displaying a simple text message.
-@Composable
-fun TabContentScreen(data: String) {
-    // on below line we are creating a column
-    Column(
-        // in this column we are specifying modifier
-        // and aligning it center of the screen on below lines.
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        // in this column we are specifying the text
-        Text(
-            // on below line we are specifying the text message
-            text = data,
-
-            // on below line we are specifying the text style.
-            style = MaterialTheme.typography.h5,
-
-            // on below line we are specifying the text color
-            color = greenColor,
-
-            // on below line we are specifying the font weight
-            fontWeight = FontWeight.Bold,
-
-            //on below line we are specifying the text alignment.
-            textAlign = TextAlign.Center
-        )
     }
 }

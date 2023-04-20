@@ -1,6 +1,8 @@
 plugins {
     id("studycompose.android.application")
     id("studycompose.android.application.compose")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -57,4 +59,17 @@ dependencies {
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicator)
+
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    val versions = "2.44"
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:$versions")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kapt("com.google.dagger:hilt-compiler:$versions")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$versions")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$versions")
 }
