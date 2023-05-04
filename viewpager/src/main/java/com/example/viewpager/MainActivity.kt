@@ -159,9 +159,9 @@ fun Tabs(pagerState: androidx.compose.foundation.pager.PagerState) {
                 // on below line we are specifying icon
                 // for each tab item and we are calling
                 // image from the list which we have created.
-                icon = {
-                    Icon(imageVector = list[index].second, contentDescription = null)
-                },
+//                icon = {
+//                    Icon(imageVector = list[index].second, contentDescription = null)
+//                },
                 // on below line we are specifying the text for
                 // the each tab item and we are calling data
                 // from the list which we have created.
@@ -197,7 +197,6 @@ fun Tabs(pagerState: androidx.compose.foundation.pager.PagerState) {
 fun TabsContent(pagerState: androidx.compose.foundation.pager.PagerState) {
     // on below line we are creating
     // horizontal pager for our tab layout.
-
     androidx.compose.foundation.pager.HorizontalPager(
         pageCount = 3,
         state = pagerState,
