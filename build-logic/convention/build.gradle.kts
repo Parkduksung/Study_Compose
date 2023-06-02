@@ -8,8 +8,8 @@ plugins {
 group = "com.example.studycompose.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 //이부분을 해줘야 convention 에서 dsl 을 사용할 수 있다.
