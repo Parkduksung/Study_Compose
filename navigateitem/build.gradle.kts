@@ -56,6 +56,8 @@ dependencies {
 
     implementation(libs.androidx.compose.material.iconsExtended)
 
+    implementation(libs.androidx.navigation.compose)
+
 
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
@@ -63,7 +65,6 @@ dependencies {
 
     implementation(libs.androidx.dataStore.core)
     implementation(libs.androidx.dataStore.preferences)
-//    implementation(libs.androidx.hilt.navigation.compose)
 //
 //    implementation(libs.hilt.android)
 //    implementation(libs.hilt.ext.work)
