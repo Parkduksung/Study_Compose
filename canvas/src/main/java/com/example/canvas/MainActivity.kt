@@ -14,9 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
@@ -70,6 +72,51 @@ fun CanvasPractice1(modifier: Modifier = Modifier) {
             radius = 13f,
             center = Offset(this.size.width * 0.8f, this.size.height * 0.2f)
         )
+    })
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CanvasPractice2(modifier: Modifier = Modifier) {
+    val colors = listOf(Color(0xFF02b8f9), Color(0xFF0277fe))
+
+    Canvas(modifier = modifier
+        .size(100.dp)
+        .padding(16.dp), onDraw = {
+
+        val trianglePath = Path().let {
+            it.moveTo(this.size.width * 0.2f, this.size.height * 0.77f)
+            it.lineTo(this.size.width * 0.2f, this.size.height * 0.95f)
+            it.lineTo(this.size.width * .37f, this.size.height * 0.86f)
+            it.close()
+            it
+        }
+
+        val electricPath = Path().let {
+            it.moveTo(this.size.width * .20f, this.size.height * 0.60f)
+            it.lineTo(this.size.width * .45f, this.size.height * 0.35f)
+            it.lineTo(this.size.width * 0.56f, this.size.height * 0.46f)
+            it.lineTo(this.size.width * 0.78f, this.size.height * 0.35f)
+            it.lineTo(this.size.width * 0.54f, this.size.height * 0.60f)
+            it.lineTo(this.size.width * 0.43f, this.size.height * 0.45f)
+            it.close()
+            it
+        }
+
+        drawOval(
+            Brush.verticalGradient(colors = colors),
+            size = Size(this.size.width, this.size.height * 0.95f)
+        )
+
+        drawPath(
+            path = trianglePath,
+            Brush.verticalGradient(colors = colors),
+            style = Stroke(width = 15f, cap = StrokeCap.Round)
+        )
+
+        drawPath(path = electricPath, color = Color.White)
+
+
     })
 }
 
