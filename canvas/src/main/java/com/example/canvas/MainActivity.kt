@@ -115,8 +115,35 @@ fun CanvasPractice2(modifier: Modifier = Modifier) {
         )
 
         drawPath(path = electricPath, color = Color.White)
-
-
     })
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun CanvasPractice3(modifier: Modifier = Modifier) {
+
+    Canvas(modifier = modifier
+        .size(100.dp)
+        .padding(16.dp), onDraw = {
+
+        drawRoundRect(
+            color = Color.Red,
+            cornerRadius = CornerRadius(20f, 20f),
+            size = Size(200f, 100f)
+        )
+
+        val trianglePath = Path().let {
+            it.moveTo(this.size.width * 0.5f-10, this.size.height * 0.15f)
+            it.lineTo(this.size.width * 0.5f-10, this.size.height * 0.35f)
+            it.lineTo(this.size.width * 0.5f + 30, this.size.height * 0.25f)
+            it.close()
+            it
+        }
+
+        drawPath(
+            path = trianglePath,
+            color = Color.White
+        )
+    })
+}
