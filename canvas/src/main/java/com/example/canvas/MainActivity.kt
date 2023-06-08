@@ -194,3 +194,60 @@ fun CanvasPractice4(modifier: Modifier = Modifier) {
 
     })
 }
+
+@Preview
+@Composable
+fun CanvasPractice5(modifier: Modifier = Modifier) {
+
+    val backgroundColor = listOf(Color(0xFF2078EE), Color(0xFF74E6FE))
+    val sunColor = listOf(Color(0xFFFFC200), Color(0xFFFFE100))
+
+    Canvas(modifier = modifier
+        .size(100.dp)
+        .padding(16.dp), onDraw = {
+
+        val width = size.width
+        val height = size.height
+
+        val path = Path().apply {
+            moveTo(width.times(.76f), height.times(.72f))
+            cubicTo(
+                width.times(.93f),
+                height.times(.72f),
+                width.times(.98f),
+                height.times(.41f),
+                width.times(.76f),
+                height.times(.40f)
+            )
+            cubicTo(
+                width.times(.75f),
+                height.times(.21f),
+                width.times(.35f),
+                height.times(.21f),
+                width.times(.38f),
+                height.times(.50f)
+            )
+            cubicTo(
+                width.times(.25f),
+                height.times(.50f),
+                width.times(.20f),
+                height.times(.69f),
+                width.times(.41f),
+                height.times(.72f)
+            )
+            close()
+        }
+
+        drawRoundRect(
+            brush = Brush.verticalGradient(backgroundColor),
+            cornerRadius = CornerRadius(50f, 50f),
+
+            )
+        drawCircle(
+            brush = Brush.verticalGradient(sunColor),
+            radius = width.times(.17f),
+            center = Offset(width.times(.35f), height.times(.35f))
+        )
+        drawPath(path = path, color = Color.White.copy(alpha = .90f))
+    })
+}
