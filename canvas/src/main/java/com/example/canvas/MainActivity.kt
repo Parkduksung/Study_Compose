@@ -134,8 +134,8 @@ fun CanvasPractice3(modifier: Modifier = Modifier) {
         )
 
         val trianglePath = Path().let {
-            it.moveTo(this.size.width * 0.5f-10, this.size.height * 0.15f)
-            it.lineTo(this.size.width * 0.5f-10, this.size.height * 0.35f)
+            it.moveTo(this.size.width * 0.5f - 10, this.size.height * 0.15f)
+            it.lineTo(this.size.width * 0.5f - 10, this.size.height * 0.35f)
             it.lineTo(this.size.width * 0.5f + 30, this.size.height * 0.25f)
             it.close()
             it
@@ -145,5 +145,52 @@ fun CanvasPractice3(modifier: Modifier = Modifier) {
             path = trianglePath,
             color = Color.White
         )
+    })
+}
+
+@Preview
+@Composable
+fun CanvasPractice4(modifier: Modifier = Modifier) {
+
+    Canvas(modifier = modifier
+        .size(100.dp)
+        .padding(16.dp), onDraw = {
+
+        drawArc(
+            color = Color(0xFFf04231),
+            startAngle = -90f,
+            sweepAngle = 180f,
+            useCenter = true,
+            size = Size(size.width * .50f, size.height * .50f),
+            topLeft = Offset(size.width * .25f, 0f)
+        )
+
+        drawArc(
+            color = Color(0xFF4385f7),
+            startAngle = 0f,
+            sweepAngle = 180f,
+            useCenter = true,
+            size = Size(size.width * .50f, size.height * .50f),
+            topLeft = Offset(size.width * .5f, size.height * .25f)
+        )
+
+        drawArc(
+            color = Color(0xFF30a952),
+            startAngle = 0f,
+            sweepAngle = -180f,
+            useCenter = true,
+            size = Size(size.width * .50f, size.height * .50f),
+            topLeft = Offset(size.width * .0f, size.height * .25f)
+        )
+
+        drawArc(
+            color = Color(0xFFffbf00),
+            startAngle = 270f,
+            sweepAngle = -180f,
+            useCenter = true,
+            size = Size(size.width * .50f, size.height * .50f),
+            topLeft = Offset(size.width * .25f, size.height * .5f)
+        )
+
     })
 }
