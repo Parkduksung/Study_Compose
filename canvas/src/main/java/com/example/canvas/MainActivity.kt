@@ -16,11 +16,13 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.ClipOp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -251,3 +253,78 @@ fun CanvasPractice5(modifier: Modifier = Modifier) {
         drawPath(path = path, color = Color.White.copy(alpha = .90f))
     })
 }
+
+@Preview
+@Composable
+fun CanvasPractice6(modifier: Modifier = Modifier) {
+
+    Canvas(modifier = modifier
+        .size(100.dp)
+        .padding(20.dp), onDraw = {
+
+        val width = this.size.width
+        val height = this.size.height
+
+        val path = Path()
+        path.moveTo(width / 2, height / 2)
+        path.lineTo(width + 5, height * .05f)
+        path.lineTo(width + 20, height * 0.45f)
+
+
+        clipPath(path = path, clipOp = ClipOp.Difference) {
+            drawCircle(
+                color = Color.Transparent,
+                radius = 100f,
+                style = Stroke(40f, cap = StrokeCap.Round)
+            )
+            drawPath(path = path, color = Color.Transparent)
+        }
+
+        drawRect(
+            color = Color(0xFF4384f3),
+            size = Size(width * .55f, 20f),
+            topLeft = Offset(width * .55f, height * .45f)
+        )
+
+        drawRect(
+            color = Color(0xFF4384f3),
+            size = Size(width * .45f, 20f),
+            topLeft = Offset(width * .55f, height * .54f)
+        )
+
+        drawArc(
+            color = Color(0xFF4384f3),
+            startAngle = -4.8f,
+            sweepAngle = 50f,
+            useCenter = false,
+            style = Stroke(width = 40f)
+        )
+        drawArc(
+            color = Color(0xFF33a852),
+            startAngle = 45f,
+            sweepAngle = 135f,
+            useCenter = false,
+            style = Stroke(width = 40f)
+        )
+        drawArc(
+            color = Color(0xFFfabd03),
+            startAngle = 145f,
+            sweepAngle = 80f,
+            useCenter = false,
+            style = Stroke(width = 40f)
+        )
+
+        drawArc(
+            color = Color(0xFFeb4435),
+            startAngle = 205f,
+            sweepAngle = 120f,
+            useCenter = false,
+            style = Stroke(width = 40f)
+        )
+
+    })
+}
+
+
+
+
