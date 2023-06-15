@@ -12,6 +12,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/Theme.StudyCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
