@@ -35,6 +35,7 @@
             <option value="$PROJECT_DIR$/flowlayout" />
             <option value="$PROJECT_DIR$/foundation" />
             <option value="$PROJECT_DIR$/gif" />
+            <option value="$PROJECT_DIR$/hangeul" />
             <option value="$PROJECT_DIR$/keyboard" />
             <option value="$PROJECT_DIR$/lectures" />
             <option value="$PROJECT_DIR$/maxlengthtextfiled" />
@@ -51,6 +52,7 @@
             <option value="$PROJECT_DIR$/stringtoimage" />
             <option value="$PROJECT_DIR$/swipedismiss" />
             <option value="$PROJECT_DIR$/swipetorefresh" />
+            <option value="$PROJECT_DIR$/timedistance" />
             <option value="$PROJECT_DIR$/tooltip" />
             <option value="$PROJECT_DIR$/viewpager" />
             <option value="$PROJECT_DIR$/week1" />
