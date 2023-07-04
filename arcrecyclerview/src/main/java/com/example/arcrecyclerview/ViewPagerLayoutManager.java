@@ -5,6 +5,7 @@ import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -676,13 +677,20 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
                 } else {
                     addView(scrap, 0);
                 }
-                if (i == currentPos) currentFocusView = scrap;
+                if (i == currentPos) {
+                    currentFocusView = scrap;
+                }
                 lastOrderWeight = orderWeight;
                 positionCache.put(i, scrap);
             }
         }
 
+
         currentFocusView.requestFocus();
+    }
+
+    public View getFocusView() {
+        return currentFocusView;
     }
 
     private boolean useMaxVisibleCount() {

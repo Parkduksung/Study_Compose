@@ -262,6 +262,10 @@ public class CircleScaleLayoutManager extends ViewPagerLayoutManager {
         itemView.setScaleY(scale);
     }
 
+    public void onClickItem(View view) {
+        getFocusView().setTranslationY(1.5f);
+    }
+
     @Override
     protected float setViewElevation(View itemView, float targetOffset) {
         if (zAlignment == LEFT_ON_TOP)
