@@ -42,6 +42,7 @@
             <option value="$PROJECT_DIR$/lectures" />
             <option value="$PROJECT_DIR$/maxlengthtextfiled" />
             <option value="$PROJECT_DIR$/navigateitem" />
+            <option value="$PROJECT_DIR$/opengraph" />
             <option value="$PROJECT_DIR$/paging" />
             <option value="$PROJECT_DIR$/paging3" />
             <option value="$PROJECT_DIR$/parcelable" />
@@ -54,6 +55,7 @@
             <option value="$PROJECT_DIR$/stringtoimage" />
             <option value="$PROJECT_DIR$/swipedismiss" />
             <option value="$PROJECT_DIR$/swipetorefresh" />
+            <option value="$PROJECT_DIR$/templete" />
             <option value="$PROJECT_DIR$/timedistance" />
             <option value="$PROJECT_DIR$/tooltip" />
             <option value="$PROJECT_DIR$/viewpager" />
