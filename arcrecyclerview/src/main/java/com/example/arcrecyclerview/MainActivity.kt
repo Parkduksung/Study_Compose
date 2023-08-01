@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val dataAdapter = DataAdapter { view ->
 
-        circleScaleLayoutManager.onClickItem(view)
+//        circleScaleLayoutManager.onClickItem(view)
 
         ScrollHelper.smoothScrollToTargetView(binding.rvCircle, view)
     }
@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         circleScaleLayoutManager.apply {
-            radius = 1200
-            angleInterval = 7
-            centerScale = 1f
-            moveSpeed = 0.1f
+            this.setRadius(1200)
+            setAngleInterval(7)
+            setCenterScale(1f)
+            setMoveSpeed(0.1f)
             circleScaleLayoutManager.enableBringCenterToFront = false
         }
 
