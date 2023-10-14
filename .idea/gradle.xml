@@ -34,7 +34,9 @@
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/canvas" />
             <option value="$PROJECT_DIR$/collapsingtoolbar" />
+            <option value="$PROJECT_DIR$/customtoast" />
             <option value="$PROJECT_DIR$/dialog" />
+            <option value="$PROJECT_DIR$/dropdownmenu" />
             <option value="$PROJECT_DIR$/flowlayout" />
             <option value="$PROJECT_DIR$/foundation" />
             <option value="$PROJECT_DIR$/gif" />
