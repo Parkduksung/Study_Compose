@@ -24,6 +24,7 @@ androidxTestExt = "1.1.2"
 androidxUiAutomator = "2.2.0"
 androidxWork = "2.7.1"
 coil = "2.0.0-rc01"
+constraintlayoutCompose = "1.0.1"
 hilt = "2.41"
 hiltExt = "1.0.0"
 jacoco = "0.8.7"
@@ -79,6 +80,7 @@ androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-t
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidxCompose" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidxCompose" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxCompose" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
 androidx-customview-poolingcontainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "androidxCustomView" }
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
