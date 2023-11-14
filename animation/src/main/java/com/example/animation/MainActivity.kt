@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -75,7 +76,7 @@ fun MainScreen() {
 
         AnimatedVisibility(
             visible = boxVisible,
-            enter = fadeIn() + expandHorizontally(),
+            enter = fadeIn(animationSpec = tween(durationMillis = 5000)) + expandHorizontally(),
             exit = slideOutVertically() + fadeOut()
         ) {
             Box(
