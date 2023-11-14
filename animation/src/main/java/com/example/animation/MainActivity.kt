@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -69,7 +73,11 @@ fun MainScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        AnimatedVisibility(visible = boxVisible) {
+        AnimatedVisibility(
+            visible = boxVisible,
+            enter = fadeIn() + expandHorizontally(),
+            exit = slideOutVertically() + fadeOut()
+        ) {
             Box(
                 modifier = Modifier
                     .size(200.dp)
