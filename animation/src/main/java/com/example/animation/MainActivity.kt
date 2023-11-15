@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.animation.ui.theme.StudyComposeTheme
 
@@ -76,8 +74,8 @@ fun MainScreen() {
 
         AnimatedVisibility(
             visible = boxVisible,
-            enter = fadeIn(animationSpec = tween(durationMillis = 5000)) + expandHorizontally(),
-            exit = slideOutVertically() + fadeOut()
+            enter = slideInHorizontally(animationSpec = tween(durationMillis = 3000, easing = FastOutSlowInEasing)),
+            exit = slideOutVertically()
         ) {
             Box(
                 modifier = Modifier
