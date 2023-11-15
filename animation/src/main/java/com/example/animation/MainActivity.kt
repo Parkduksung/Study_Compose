@@ -7,6 +7,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
@@ -33,6 +34,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -72,6 +74,20 @@ fun MainScreen() {
         boxVisible = newState
     }
 
+
+    val state = remember { MutableTransitionState(false) }
+
+    //자동시작할때 이렇게도 가능.
+    LaunchedEffect(key1 = Unit){
+        state.targetState = true
+    }
+
+    //다 끝났을때가 Idle 상태
+    if(state.isIdle){
+        state.targetState = false
+    }
+
+
     Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
@@ -82,7 +98,7 @@ fun MainScreen() {
         Spacer(modifier = Modifier.height(20.dp))
 
         AnimatedVisibility(
-            visible = boxVisible,
+            visibleState = state,
             enter = fadeIn(animationSpec = tween(durationMillis = 1500)),
             exit = fadeOut(animationSpec = tween(durationMillis = 1500))
         ) {
@@ -95,6 +111,8 @@ fun MainScreen() {
 
                 Spacer(modifier = Modifier.width(20.dp))
 
+                // enter 는 fadeIn + slideInVertically
+                // exit 는 fadeOut + slideOutVertically
                 Box(
                     modifier = Modifier
                         .animateEnterExit(
