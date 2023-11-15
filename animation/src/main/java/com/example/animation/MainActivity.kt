@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
@@ -74,7 +75,7 @@ fun MainScreen() {
 
         AnimatedVisibility(
             visible = boxVisible,
-            enter = slideInHorizontally(animationSpec = tween(durationMillis = 3000, easing = FastOutSlowInEasing)),
+            enter = slideInHorizontally(animationSpec = tween(durationMillis = 3000, easing = CubicBezierEasing(1f,1f,0.5f,1f))),
             exit = slideOutVertically()
         ) {
             Box(
