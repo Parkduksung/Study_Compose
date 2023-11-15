@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -75,30 +76,37 @@ fun MainScreen() {
     }
 
 
-    val state = remember { MutableTransitionState(false) }
-
-    //자동시작할때 이렇게도 가능.
-    LaunchedEffect(key1 = Unit){
-        state.targetState = true
-    }
-
-    //다 끝났을때가 Idle 상태
-    if(state.isIdle){
-        state.targetState = false
-    }
+//    val state = remember { MutableTransitionState(false) }
+//
+//    //자동시작할때 이렇게도 가능.
+//    LaunchedEffect(key1 = Unit) {
+//        state.targetState = true
+//    }
+//
+//    //다 끝났을때가 Idle 상태
+//    if (state.isIdle) {
+//        state.targetState = false
+//    }
 
 
     Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            CustomButton(text = "Show", targetState = true, onClick = onClick)
-            CustomButton(text = "Hide", targetState = false, onClick = onClick)
+            Crossfade(
+                targetState = boxVisible,
+                animationSpec = tween(durationMillis = 1500), label = "Crossfade CustomButton"
+            ) { visible ->
+                when (visible) {
+                    true -> CustomButton(text = "Hide", targetState = false, onClick = onClick, bgColor = Color.Red)
+                    false -> CustomButton(text = "Show", targetState = true, onClick = onClick, bgColor = Color.Magenta)
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
         AnimatedVisibility(
-            visibleState = state,
+            visible = boxVisible,
             enter = fadeIn(animationSpec = tween(durationMillis = 1500)),
             exit = fadeOut(animationSpec = tween(durationMillis = 1500))
         ) {
