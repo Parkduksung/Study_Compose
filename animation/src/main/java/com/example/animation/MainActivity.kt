@@ -4,13 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.repeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,6 +26,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -57,6 +61,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainScreen() {
 
@@ -78,14 +83,34 @@ fun MainScreen() {
 
         AnimatedVisibility(
             visible = boxVisible,
-            enter = fadeIn(animationSpec = repeatable(10, animation = tween(durationMillis = 2000), repeatMode = RepeatMode.Reverse)),
-            exit = slideOutVertically()
+            enter = fadeIn(animationSpec = tween(durationMillis = 1500)),
+            exit = fadeOut(animationSpec = tween(durationMillis = 1500))
         ) {
-            Box(
-                modifier = Modifier
-                    .size(200.dp)
-                    .background(Color.Blue)
-            )
+            Row {
+                Box(
+                    modifier = Modifier
+                        .size(150.dp)
+                        .background(Color.Blue)
+                )
+
+                Spacer(modifier = Modifier.width(20.dp))
+
+                Box(
+                    modifier = Modifier
+                        .animateEnterExit(
+                            enter = slideInVertically(
+                                animationSpec = tween(durationMillis = 1500),
+                                initialOffsetY = { -it }),
+                            exit = slideOutVertically(
+                                animationSpec = tween(durationMillis = 1500),
+                                targetOffsetY = { it }
+                            )
+                        )
+                        .size(150.dp)
+                        .background(Color.Blue)
+                )
+            }
+
         }
     }
 
