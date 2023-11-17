@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Icon
@@ -47,10 +49,53 @@ class MainActivity : ComponentActivity() {
         setContent {
             StudyComposeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
+                    items(
+                        listOf(
+                            "Philipp",
+                            "Carl",
+                            "Martin",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Philipp",
+                            "Philipp",
+                            "Philipp",
+                            "Carl",
+                            "Martin",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Jake",
+                            "Philipp",
+                            "Philipp",
+                        )
+                    ) {
+                        PersonItem(
+                            personName = it,
+                            dropdownItems = listOf(
+                                DropDownItem("Item 1"),
+                                DropDownItem("Item 2"),
+                                DropDownItem("Item 3"),
+                            ),
+                            onItemClick = {
+                                Toast.makeText(
+                                    applicationContext,
+                                    it.text,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
