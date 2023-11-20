@@ -54,7 +54,9 @@ fun PersonItem(
         MutableInteractionSource()
     }
 
-    var popupAttachPosition by remember { mutableStateOf(PopupAttachPosition.TOP) }
+    var popupAttachPosition by remember {
+        mutableStateOf(PopupAttachPosition.TOP)
+    }
 
 
     Card(
@@ -89,8 +91,10 @@ fun PersonItem(
                 isContextMenuVisible = false
             },
             offset = DpOffset.Zero,
-            popUpAttachPosition = {
-                popupAttachPosition = it
+            popUpAttachPosition = {position ->
+                if(popupAttachPosition != position){
+                    popupAttachPosition = position
+                }
             }
         ) {
 
