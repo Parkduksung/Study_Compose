@@ -67,4 +67,13 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.testManifest)
+
+    // For AppWidgets support
+    implementation(libs.androidx.glance.appwidget)
+
+    // For interop APIs with Material 2
+    implementation(libs.androidx.glance.material)
+
+    // For interop APIs with Material 3
+    implementation(libs.androidx.glance.material3)
 }

@@ -25,6 +25,9 @@ androidxUiAutomator = "2.2.0"
 androidxWork = "2.7.1"
 coil = "2.0.0-rc01"
 constraintlayoutCompose = "1.0.1"
+glanceMaterial3 = "1.0.0"
+glanceMaterial = "1.0.0"
+glanceAppwidget = "1.0.0"
 hilt = "2.41"
 hiltExt = "1.0.0"
 jacoco = "0.8.7"
@@ -87,6 +90,9 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-customview-poolingcontainer = { group = "androidx.customview", name = "customview-poolingcontainer", version.ref = "androidxCustomView" }
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 androidx-dataStore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glanceMaterial3" }
+androidx-glance-material = { module = "androidx.glance:glance-material", version.ref = "glanceMaterial" }
+androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppwidget" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
