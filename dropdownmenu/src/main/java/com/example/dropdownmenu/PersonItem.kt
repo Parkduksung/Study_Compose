@@ -7,6 +7,8 @@ import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -62,9 +64,8 @@ fun PersonItem(
     Card(
         elevation = 4.dp,
         modifier = modifier
-            .height(56.dp)
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .indication(interactionSource, LocalIndication.current)
@@ -84,6 +85,12 @@ fun PersonItem(
                 .padding(16.dp)
         ) {
             Text(text = personName)
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(text = personName)
+
+
         }
         SampleDropdownMenu(
             expanded = isContextMenuVisible,
