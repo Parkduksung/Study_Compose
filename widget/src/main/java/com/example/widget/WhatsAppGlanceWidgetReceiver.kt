@@ -6,10 +6,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceId
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.provideContent
+import androidx.glance.background
+import androidx.glance.layout.padding
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
@@ -22,7 +25,9 @@ class WhatsAppGlanceWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             var editing by remember { mutableStateOf(false) }
-            androidx.glance.layout.Column {
+            androidx.glance.layout.Column(
+                modifier = androidx.glance.GlanceModifier.background(Color.White).padding(16.dp)
+            ) {
                 Text(
                     text = if (editing) "Editing" else "Not Editing", style = TextStyle(
                         color = ColorProvider(
