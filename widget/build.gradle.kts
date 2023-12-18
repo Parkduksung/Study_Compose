@@ -68,6 +68,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
+    implementation(libs.androidx.glance)
+
     // For AppWidgets support
     implementation(libs.androidx.glance.appwidget)
 
