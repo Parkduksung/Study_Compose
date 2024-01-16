@@ -142,7 +142,6 @@ interface LifecyclePauseOrDisposeEffectResult {
     fun runPauseOrOnDisposeEffect()
 }
 
-
 @Composable
 private fun LifecycleResumeEffectImpl(
     lifecycleOwner: LifecycleOwner,
@@ -171,6 +170,9 @@ private fun LifecycleResumeEffectImpl(
             }
         }
 
+        //즉, onResume 일때 위에서 선언한 scope 의 내용이 effectResult 에 치환되고
+        //onPause 일때 effectResult?.runPauseOrOnDisposeEffect() 으로 치환된 내용이 실행되는 구조.
+
         //옵저버 등록.
         lifecycleOwner.lifecycle.addObserver(observer)
 
@@ -183,3 +185,6 @@ private fun LifecycleResumeEffectImpl(
     }
 }
 
+
+//동일한 방식으로 onStart- onStop 으로 쌍을 이루는 LifecycleStartEffect 라는 것도 존재함.
+// 이건 start 일때 effectResult 에 scope 안의 내용이 치환되고 stop 일때 실행되는 구조.
