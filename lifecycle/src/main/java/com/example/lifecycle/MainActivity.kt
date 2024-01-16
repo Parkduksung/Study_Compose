@@ -52,7 +52,7 @@ fun LifeCycleScreen() {
     //이건 처음 onResume 시에는 실행되지 않다가 onPause 시에 count++ 실행.
     //그래서 onResume 으로 다시 돌아왔을때 count 가 1이 된다.
     //Pause 에 onPauseOrDispose 내부가 실행되는거니 너무 헤비한 작업은 하면 안되겠다.
-    LifecycleResumeEffect(key1 = Unit) {
+    LifecycleResumeEffect(keys = arrayOf(Unit)) {
         onPauseOrDispose {
             count++
         }
@@ -113,11 +113,11 @@ private fun LifecycleEventEffect(
 
 @Composable
 fun LifecycleResumeEffect(
-    key1: Any?,
+    vararg keys: Any?,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     effects: LifecycleResumePauseEffectScope.() -> LifecyclePauseOrDisposeEffectResult //이쪽으로 LifecycleResumeEffectImpl 에서 onResume 이벤트 위로 올려줌.
 ) {
-    val lifecycleResumePauseEffectScope = remember(key1, lifecycleOwner) {
+    val lifecycleResumePauseEffectScope = remember(*keys, lifecycleOwner) {
         LifecycleResumePauseEffectScope(lifecycleOwner.lifecycle)
     }
     LifecycleResumeEffectImpl(lifecycleOwner, lifecycleResumePauseEffectScope, effects)
