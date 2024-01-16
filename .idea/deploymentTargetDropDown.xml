@@ -1,17 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
-    <targetSelectedWithDropDown>
-      <Target>
-        <type value="QUICK_BOOT_TARGET" />
-        <deviceKey>
-          <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="$USER_HOME$/.android/avd/Pixel_2_API_31.avd" />
-          </Key>
-        </deviceKey>
-      </Target>
-    </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-12-08T22:52:09.218865Z" />
+    <value>
+      <entry key="animation">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
+      <entry key="arcrecyclerview">
+        <State />
+      </entry>
+      <entry key="basetextfield">
+        <State />
+      </entry>
+      <entry key="book1">
+        <State />
+      </entry>
+      <entry key="book2">
+        <State />
+      </entry>
+      <entry key="bottomsheet">
+        <State />
+      </entry>
+      <entry key="canvas">
+        <State />
+      </entry>
+      <entry key="collapsingtoolbar">
+        <State />
+      </entry>
+      <entry key="constraintlayout">
+        <State />
+      </entry>
+      <entry key="customtoast">
+        <State />
+      </entry>
+      <entry key="dialog">
+        <State />
+      </entry>
+      <entry key="dropdownmenu">
+        <State />
+      </entry>
+      <entry key="flowlayout">
+        <State />
+      </entry>
+      <entry key="foundation">
+        <State />
+      </entry>
+      <entry key="gif">
+        <State />
+      </entry>
+      <entry key="hangeul">
+        <State />
+      </entry>
+      <entry key="keyboard">
+        <State />
+      </entry>
+      <entry key="lectures">
+        <State />
+      </entry>
+      <entry key="lifecycle">
+        <State />
+      </entry>
+      <entry key="maxlengthtextfiled">
+        <State />
+      </entry>
+      <entry key="navigateitem">
+        <State />
+      </entry>
+      <entry key="notification">
+        <State />
+      </entry>
+      <entry key="opengraph">
+        <State />
+      </entry>
+      <entry key="orientation">
+        <State />
+      </entry>
+      <entry key="paging">
+        <State />
+      </entry>
+      <entry key="paging3">
+        <State />
+      </entry>
+      <entry key="part1">
+        <State />
+      </entry>
+      <entry key="piechart">
+        <State />
+      </entry>
+      <entry key="ppt">
+        <State />
+      </entry>
+      <entry key="practice1">
+        <State />
+      </entry>
+      <entry key="practice2">
+        <State />
+      </entry>
+      <entry key="practice3">
+        <State />
+      </entry>
+      <entry key="stringtoimage">
+        <State />
+      </entry>
+      <entry key="swipedismiss">
+        <State />
+      </entry>
+      <entry key="swipetorefresh">
+        <State />
+      </entry>
+      <entry key="templete">
+        <State />
+      </entry>
+      <entry key="timedistance">
+        <State />
+      </entry>
+      <entry key="tooltip">
+        <State />
+      </entry>
+      <entry key="viewpager">
+        <State />
+      </entry>
+      <entry key="webview">
+        <State />
+      </entry>
+      <entry key="week1">
+        <State />
+      </entry>
+      <entry key="week2">
+        <State />
+      </entry>
+      <entry key="week3">
+        <State />
+      </entry>
+      <entry key="week4">
+        <State />
+      </entry>
+      <entry key="week5">
+        <State />
+      </entry>
+      <entry key="week6">
+        <State />
+      </entry>
+      <entry key="week7">
+        <State />
+      </entry>
+      <entry key="week8">
+        <State />
+      </entry>
+      <entry key="widget">
+        <State />
+      </entry>
+    </value>
   </component>
 </project>
