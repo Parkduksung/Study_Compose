@@ -48,8 +48,14 @@ fun LifeCycleScreen() {
     //androidx.compose.runtime:runtime-*:1.5.0 이상부터 추가.
     var count by remember { mutableStateOf(0) }
 
-    LifecycleEventEffect(event = Lifecycle.Event.ON_RESUME) {
-        count++
+
+    //이건 처음 onResume 시에는 실행되지 않다가 onPause 시에 count++ 실행.
+    //그래서 onResume 으로 다시 돌아왔을때 count 가 1이 된다.
+    //Pause 에 onPauseOrDispose 내부가 실행되는거니 너무 헤비한 작업은 하면 안되겠다.
+    LifecycleResumeEffect(key1 = Unit) {
+        onPauseOrDispose {
+            count++
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -100,6 +106,79 @@ private fun LifecycleEventEffect(
         //onDispose 에서는 옵저버 제거.
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+}
+
+
+@Composable
+fun LifecycleResumeEffect(
+    key1: Any?,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    effects: LifecycleResumePauseEffectScope.() -> LifecyclePauseOrDisposeEffectResult //이쪽으로 LifecycleResumeEffectImpl 에서 onResume 이벤트 위로 올려줌.
+) {
+    val lifecycleResumePauseEffectScope = remember(key1, lifecycleOwner) {
+        LifecycleResumePauseEffectScope(lifecycleOwner.lifecycle)
+    }
+    LifecycleResumeEffectImpl(lifecycleOwner, lifecycleResumePauseEffectScope, effects)
+}
+
+
+//LifecycleOwner 를 상속받은 ResumePauseEffectScope 클래스.
+class LifecycleResumePauseEffectScope(override val lifecycle: Lifecycle) : LifecycleOwner {
+
+    // inline crossinline 으로 onPauseOrDispose 인자로 들어오는걸 알수 있음.
+    inline fun onPauseOrDispose(
+        crossinline onPauseOrDisposeEffect: LifecycleOwner.() -> Unit
+    ): LifecyclePauseOrDisposeEffectResult = object : LifecyclePauseOrDisposeEffectResult {
+        override fun runPauseOrOnDisposeEffect() {
+            onPauseOrDisposeEffect()
+        }
+    }
+}
+
+
+interface LifecyclePauseOrDisposeEffectResult {
+    fun runPauseOrOnDisposeEffect()
+}
+
+
+@Composable
+private fun LifecycleResumeEffectImpl(
+    lifecycleOwner: LifecycleOwner,
+    scope: LifecycleResumePauseEffectScope,
+    effects: LifecycleResumePauseEffectScope.() -> LifecyclePauseOrDisposeEffectResult
+) {
+    //key 가 lifecycleOwner 랑 scope
+    //둘중 하나 변하면 DisposableEffect 를 다시 실행.
+    DisposableEffect(lifecycleOwner, scope) {
+        //초기값 설정.
+        var effectResult: LifecyclePauseOrDisposeEffectResult? = null
+
+        //옵저버 생성
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+
+                //onResume 일 경우 위에 전달해줄수 있게 effectResult = effects() 치환.
+                Lifecycle.Event.ON_RESUME -> with(scope) {
+                    effectResult = effects()
+                }
+
+                //onPause 일 경우 effectResult?.runPauseOrOnDisposeEffect() 실행.
+                Lifecycle.Event.ON_PAUSE -> effectResult?.runPauseOrOnDisposeEffect()
+
+                else -> {}
+            }
+        }
+
+        //옵저버 등록.
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        //onDispose 에서는 옵저버 제거.
+        //runPauseOrOnDisposeEffect 실행.
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+            effectResult?.runPauseOrOnDisposeEffect()
         }
     }
 }
