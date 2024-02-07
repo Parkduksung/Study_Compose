@@ -38,6 +38,9 @@
       <entry key="dialog">
         <State />
       </entry>
+      <entry key="downloadmanager">
+        <State />
+      </entry>
       <entry key="dropdownmenu">
         <State />
       </entry>
@@ -63,6 +66,9 @@
         <State />
       </entry>
       <entry key="maxlengthtextfiled">
+        <State />
+      </entry>
+      <entry key="modalnavigationdrawer">
         <State />
       </entry>
       <entry key="navigateitem">
